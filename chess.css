@@ -1,0 +1,93 @@
+
+table, th, td {
+  border: 1px solid black;
+  width: 250px;
+  height: 25px;
+  text-align: center;
+  border-spacing: 0px;
+  color: blue;
+}
+
+
+
+tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd) {
+  background: white;
+}
+
+tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd) {
+  background: grey;
+}
+
+#r {
+  background-image: url(img/white-rook.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#R {
+  background-image: url(img/black-rook.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#n {
+  background-image: url(img/white-knight.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#N {
+  background-image: url(img/black-knight.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#q {
+  background-image: url(img/white-queen.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#Q {
+  background-image: url(img/black-queen.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#k {
+  background-image: url(img/white-king.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#K {
+  background-image: url(img/black-king.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#b {
+  background-image: url(img/white-bishop.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#B {
+  background-image: url(img/black-bishop.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#p {
+  background-image: url(img/white-pawn.png);
+  background-repeat: no-repeat;
+  background-size: 75% 75%;
+  background-position: center;
+}
+
+#P {
+  background-image: url(img/black-pawn.png);
+  background-repeat: no-repeat;
+  background-size: 75% 75%;
+  background-position: center;
+}
