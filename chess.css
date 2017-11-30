@@ -1,14 +1,16 @@
-
-table, th, td {
-  border: 1px solid black;
-  width: 250px;
-  height: 25px;
-  text-align: center;
-  border-spacing: 0px;
-  color: blue;
+body {
+  margin: 0;
+}
+table {
+  width: 321px;
+  height: 321px;
+  border-collapse: collapse;
+  position: absolute;
 }
 
-
+td {
+  border: 1px solid black;
+}
 
 tr:nth-child(even) td:nth-child(even), tr:nth-child(odd) td:nth-child(odd) {
   background: white;
@@ -18,76 +20,142 @@ tr:nth-child(odd) td:nth-child(even), tr:nth-child(even) td:nth-child(odd) {
   background: grey;
 }
 
-#r {
+#chessPiece {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+}
+
+#board .r {
   background-image: url(img/white-rook.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#R {
+#board .R {
   background-image: url(img/black-rook.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#n {
+#board .n {
   background-image: url(img/white-knight.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#N {
+#board .N {
   background-image: url(img/black-knight.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#q {
+#board .q {
   background-image: url(img/white-queen.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#Q {
+#board .Q {
   background-image: url(img/black-queen.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#k {
+#board .k {
   background-image: url(img/white-king.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#K {
+#board .K {
   background-image: url(img/black-king.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#b {
+#board .b {
   background-image: url(img/white-bishop.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#B {
+#board .B {
   background-image: url(img/black-bishop.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 90% 90%;
+  background-position: center;
 }
 
-#p {
+#board .p {
   background-image: url(img/white-pawn.png);
   background-repeat: no-repeat;
   background-size: 75% 75%;
   background-position: center;
 }
 
-#P {
+#board .P {
   background-image: url(img/black-pawn.png);
   background-repeat: no-repeat;
   background-size: 75% 75%;
   background-position: center;
+}
+
+#board {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes moveUp {
+  to {
+    transform: translate(0, -40px);
+  }
+}
+
+@keyframes moveDown {
+  to {
+    transform: translate(0, +40px);
+  }
+}
+
+@keyframes moveLeft {
+  to {
+    transform: translate(-40px, 0);
+  }
+}
+
+@keyframes moveRight {
+  to {
+    transform: translate(+40px, 0);
+  }
+}
+
+.movePieceUp {
+  animation-name: moveUp;
+  animation-duration: 1s;
+}
+
+.movePieceDown {
+  animation-name: moveDown;
+  animation-duration: 1s;
+}
+
+.movePieceRight {
+  animation-name: moveRight;
+  animation-duration: 1s;
+}
+
+.movePieceLeft {
+  animation-name: moveLeft;
+  animation-duration: 1s;
 }
