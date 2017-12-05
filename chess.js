@@ -34,48 +34,83 @@ var displayField = function() {
 displayField()
 
 function makeYourMove(from, to) {
+    let fromLet = columns.indexOf(from[0])
+    let fromNum = parseInt(from[1])
+    let toLet = columns.indexOf(to[0])
+    let toNum = parseInt(to[1])
+    let columnSteps = fromLet - toLet
+    let rowSteps = fromNum - toNum
+    let steps = Math.abs(columnSteps) < Math.abs(rowSteps) ? Math.abs(rowSteps) : Math.abs(columnSteps)
   setTimeout(function() {
+
+    let startPosLeft = fromLet * 40
+    let startPosTop = (8 - fromNum) * 40
+    let endPosLeft = toLet * 40
+    let endPosTop = (8 - toNum) * 40
+
+    let toEl = document.getElementById(to)
     let fromEl = document.getElementById(from)
     let pieceType = fromEl.className
+    fromEl.className = ''
 
-    let fromLet = from[0]
-    let fromNum = from[1]
-    let goLet = to[0]
-    let goNum = to[1]
+    chessPiece.classList = pieceType
+    chessPiece.style.top = startPosTop + 'px'
+    chessPiece.style.left = startPosLeft + 'px'
 
-    chessPiece.className = pieceType
-    chessPiece.style.top = (8 - fromNum) * 40 + 'px'
-    chessPiece.style.left = (columns.indexOf(fromLet)) * 40 + 'px'
-
-//
-// solve the problem with more then 1 block movement
-// make it execute in order
-// set sideways animation somehow
-    if (fromNum > goNum) {
-      chessPiece.classList.add('movePieceDown')
-    } else if (fromNum < goNum) {
-      chessPiece.classList.add('movePieceUp')
+    for (let step = 0; step < steps; step++) {
+        setTimeout( () => {
+            let stepX = 0
+            let stepY = 0
+            if (rowSteps < 0) {
+                stepY = -40
+                rowSteps += 1
+            } else if(rowSteps > 0) {
+                stepY = 40
+                rowSteps -= 1
+            }
+            if (columnSteps < 0) {
+                stepX = 40
+                columnSteps += 1
+            } else if (columnSteps > 0) {
+                stepX = -40
+                columnSteps -= 1
+            }
+            chessPiece.animate([
+                {transform: 'scale(1) translate(0)'},
+                {transform: 'scale(1.1, 1.1) translate(' + stepX + 'px, ' + stepY + 'px)'},
+                {transform: 'scale(1) translate(' + stepX + 'px, ' + stepY + 'px)'}
+            ], 1000)
+            setTimeout( () => {
+                startPosLeft += stepX
+                startPosTop += stepY
+                chessPiece.style.top = startPosTop + 'px'
+                chessPiece.style.left = startPosLeft + 'px'
+            }, 1010)
+        }, 1000 * step)
     }
-    if (columns.indexOf(fromLet) > columns.indexOf(goLet)) {
-      chessPiece.classList.add('movePieceLeft')
-    } else if (columns.indexOf(fromLet) < columns.indexOf(goLet)) {
-      chessPiece.classList.add('movePieceRight')
-    }
-
-    Board[goLet][goNum] = Board[fromLet][fromNum];
-    Board[fromLet][fromNum] = ' ';
-    displayField();
 
     setTimeout( () => {
-      chessPiece.className = ''
-    }, time-1000)
-
+        chessPiece.className = ''
+        toEl.className = pieceType
+    }, 1000 * steps)
   }, time)
-  time += 1000
+  time += 1500 * steps
 }
-console.log(chessPiece);
-makeYourMove('A2', 'B3')
-// makeYourMove('A3', 'A4')
+
+var click = 0
+var startPosition
+var endPosition
+
+document.getElementById('vakje').onclick = e => {
+    if (!startPosition) {
+        startPosition = e.target.className != '' ? e.target.id : undefined
+    } else {
+        makeYourMove(startPosition, e.target.id)
+        startPosition = undefined
+        time = 0
+    }
+}
+
 // game begins here
 // makeYourMove('E2', 'E4')
 //
